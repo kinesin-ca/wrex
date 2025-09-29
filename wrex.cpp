@@ -34,7 +34,7 @@ private:
     }
 
     // Open syslog
-    openlog("cmdlogger", LOG_PID | LOG_CONS, LOG_USER);
+    openlog("wrex", LOG_PID | LOG_CONS, LOG_USER);
   }
 
   std::string escape_json_string(const std::string &input) {
