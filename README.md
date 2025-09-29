@@ -8,7 +8,7 @@ A simple wrapper that will run a provided command and log all output as a JSON p
 ./wrex echo "hello, world"
 
 # journalctl -f
-Sep 29 11:11:37 host cmdlogger[817516]: {"user":"user","pid":817517,"tty":"/dev/pts/0","fd":"stdout","host":"myhost","message":"hello, world","timestamp":1759158697}
+Sep 29 11:11:37 host wrex[817516]: {"user":"user","pid":817517,"tty":"/dev/pts/0","fd":"stdout","host":"myhost","message":"hello, world","timestamp":1759158697}
 ```
 
 # Why?
