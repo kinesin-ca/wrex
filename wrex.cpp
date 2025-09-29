@@ -179,6 +179,17 @@ public:
       close(stdout_pipe[1]); // Close write end
       close(stderr_pipe[1]); // Close write end
 
+      // Log the command executed
+      {
+        std::ostringstream ss;
+        ss << "CMD: ";
+        for (const auto &arg : args) {
+          ss << ' ' << arg;
+        }
+
+        log_line(ss.str(), "meta", child_pid);
+      }
+
       // Create threads to read from both pipes
       std::thread stdout_reader(&CommandLogger::read_pipe, this, stdout_pipe[0],
                                 "stdout", child_pid);
@@ -195,6 +206,12 @@ public:
 
       close(stdout_pipe[0]);
       close(stderr_pipe[0]);
+
+      {
+        std::ostringstream ss;
+        ss << "RC: " << status;
+        log_line(ss.str(), "meta", child_pid);
+      }
 
       return WIFEXITED(status) ? WEXITSTATUS(status) : 1;
     }
